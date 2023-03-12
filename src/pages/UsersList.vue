@@ -6,6 +6,7 @@
 </template>
 
 <script>
+
 import UserCreate from '../components/users/UserCreate.vue';
 import TheUsers from '../components/users/TheUsers.vue';
 

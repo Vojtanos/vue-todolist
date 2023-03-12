@@ -7,17 +7,20 @@
     "preview": "vite preview --port 5050"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.1.1",
-    "@fortawesome/free-regular-svg-icons": "^6.1.1",
-    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/fontawesome-svg-core": "^6.3.0",
+    "@fortawesome/free-brands-svg-icons": "^6.3.0",
+    "@fortawesome/free-regular-svg-icons": "^6.3.0",
+    "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/vue-fontawesome": "^3.0.0-5",
     "axios": "^0.27.1",
+    "easy-circular-progress": "^1.0.4",
     "v-click-outside": "^3.1.2",
     "vue": "^3.2.31",
     "vue-router": "^4.0.14",
     "vue-select": "^4.0.0-beta.3",
     "vue-textarea-autogrow-directive": "^0.2.0",
     "vue-textarea-autosize": "^1.1.1",
+    "vue3-circle-progress": "^1.0.7",
     "vuex": "^4.0.2"
   },
   "devDependencies": {

@@ -16,14 +16,14 @@ export default {
 </script>
 
 <style>
-@import url('http://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700,800,900&subset=latin,latin-ext');
+@import url('https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&display=swap');
 
 * {
   box-sizing: border-box;
 }
 
 html {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Domine', serif;
 }
 
 body {

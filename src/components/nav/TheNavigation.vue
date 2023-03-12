@@ -1,12 +1,10 @@
 <template>
   <header>
     <nav>
-      <div class="name">Todo list</div>
+      <div class="name"><img class="logo" src="public/images/logo.png" alt="">Todo List</div>
       <ul>
         <li>
-          <router-link to="/calendar">
-            Kalendář
-          </router-link>
+          <router-link to="/calendar">Kalendář</router-link>
         </li>
         <li>
           <router-link to="/users">Uživatelé</router-link>
@@ -14,17 +12,23 @@
         <li>
           <router-link to="/tasks">Úkoly</router-link>
         </li>
+        <li>
+          <router-link to="/gamification">Gamifikace</router-link>
+        </li>
       </ul>
     </nav>
   </header>
 </template>
 
 <style scoped>
+.logo{
+  height: 32px;
+}
 .name {
   font-size: 30px;
-  color: rgb(255, 148, 148);
+  color: #0091ad;
   height: 100%;
-  width: 130px;
+  width: 260px;
   padding-left: 10px;
   display: flex;
   align-items: center;
@@ -50,8 +54,8 @@ ul {
   justify-content: space-between;
   align-items: center;
   width: 50%;
-  max-width: 400px;
-  min-width: 300px;
+  max-width: 700px;
+  min-width: 500px;
   list-style-type: none;
   list-style: none;
   margin: 10px;
@@ -64,10 +68,16 @@ a{
   border-radius: 10px;
   border: 1px solid transparent;
 }
-a:hover,
-a:active,
+a:hover {
+  color: rgb(255, 255, 255);
+}
 a.active {
-  color: #ffadad;
-  border: 1px solid #f391e377;
+  color: black;
+  background: #0091ad;
+  width: 50px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-left: -20px;
+  margin-right: -20px;
 }
 </style>
