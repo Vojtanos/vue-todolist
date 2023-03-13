@@ -19,7 +19,10 @@ export default {
         .then(response => {
             return response.data
         })
-        .then(user => {
+        .then(async user => {
+            let username = user.name + " " + user.surName
+            await axios.post('http://localhost:5001/user', { id: user.email, username: username } )
+            await axios.put('http://localhost:5001/user/'+user.email+'/action/create-user')
             context.commit('addUser', user);
         })
         .catch(e => {

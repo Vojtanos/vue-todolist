@@ -13,35 +13,63 @@
         </tr>
     </thead>
     <tbody>
-        <tr v-for="user in users" :key="user._id">
-            <td>{{user.name + " " + user.surName}}</td>
-            <td>6000</td>
-            <td>6000</td>
-            <td>6000</td>
+        <tr v-for="(user,i) in users" :key="user._id">
+            <td>{{user.user.username}}</td>
+            <td>{{user.points_earned}}</td>
+            <td>{{ rp[i] }}</td>
+            <td>{{kp[i]}}</td>
         </tr>
     </tbody>
 </table>
 </template>
 
 <script>
+import axios from 'axios';
+
     export default {
         data() {
             return {
-                itemClass:'small',
+                users: [],
+                kp: [],
+                rp: []
             }
-        },
-        computed:{
-            users() {
-                return this.$store.getters['users/users'];
-            },
         },
         methods: {
             loadUsers() {
-                this.$store.dispatch('users/loadUsers')
+                axios.get(`http://localhost:5001/leaderboard_points/xp`)
+                .then(response => {
+                    // JSON responses are automatically parsed.
+                    this.users = response.data
+                })
+                .catch(e => {
+                    console.log(e)
+                }) 
+            },
+            loadKP() {
+                axios.get(`http://localhost:5001/leaderboard_points/kp`)
+                .then(response => {
+                    // JSON responses are automatically parsed.
+                    this.kp = response.data.map(a => a.points_earned);
+                })
+                .catch(e => {
+                    console.log(e)
+                }) 
+            },
+            loadRP() {
+                axios.get(`http://localhost:5001/leaderboard_points/rp`)
+                .then(response => {
+                    // JSON responses are automatically parsed.
+                    this.rp = response.data.map(a => a.points_earned);
+                })
+                .catch(e => {
+                    console.log(e)
+                }) 
             },
         },
         mounted() {
             this.loadUsers()
+            this.loadKP()
+            this.loadRP()
         },
     }
 </script>

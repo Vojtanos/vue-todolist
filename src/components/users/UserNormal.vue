@@ -61,7 +61,6 @@ export default {
                 email: this.emailNew,
                 phoneNumber: this.phoneNumberNew   
             }
-            console.log(user)
             this.$store.dispatch('users/updateUser', user);
             this.notEditable = true
         }

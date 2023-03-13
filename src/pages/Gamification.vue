@@ -26,5 +26,7 @@ export default {
     .main {
         display: flex;
         flex-direction: column;
+        width: 90%;
+        max-width: 700px;
     }
 </style>
