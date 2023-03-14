@@ -178,6 +178,7 @@ import CircleProgress from "vue3-circle-progress";
     border-radius: 20px;
     padding: 10px;
     border: 1px solid #0000003d;
+    margin-bottom: 50px;
 }
 .profile {
     display: flex;
