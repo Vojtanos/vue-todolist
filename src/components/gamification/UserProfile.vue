@@ -5,23 +5,39 @@
     </h1>
     <div class="main-card" v-for="user in users" :key="user._id">
         <div style="margin-bottom: 20px;">
-            <div class="profile">
-                <h1>{{user.username}}</h1> 
-                <h1>{{ user.level + 1}} lvl</h1>
+            <div class="profile" v-if="user.level">
+                <h1>{{ user.username }}</h1> 
+                <h1>{{ user.level.level_number}} lvl</h1>
             </div>
-            <div class="stats">
+            <div class="stats"  v-if="user.level && user.xp && user.kp && user.rp">
                 <div class="point_type">
-                    <circle-progress :percent="40" style="height: 100px; width: 100px;"/>
+                    <circle-progress :percent="
+                        ( (user.xp.points_earned / user.level.level_points_required[0].points_required)) * 100
+                        " 
+                        style="height: 100px; width: 100px;"
+                    />
                     <h3 class="point_name">XP</h3> 
                     <h3 class="point_score">{{ user.xp.points_earned }}</h3>
                 </div>
                 <div class="point_type">
-                    <circle-progress :percent="40" fill-color="green" style="height: 100px; width: 100px;"/>
+                    <circle-progress 
+                        :percent="
+                        ( (user.kp.points_earned / user.level.level_points_required[1].points_required)) * 100
+                        " 
+                        fill-color="green" 
+                        style="height: 100px; width: 100px;"
+                        />
                     <h3 class="point_name">KP</h3> 
-                    <h3 class="point_score">{{ user.kp.points_earned }}</h3>
+                    <h3 class="point_score">{{ user.kp.points_earned  }}</h3>
                 </div>
                 <div class="point_type">
-                    <circle-progress :percent="40" fill-color="red" style="height: 100px; width: 100px;"/>
+                    <circle-progress 
+                        :percent="
+                        ( (user.rp.points_earned / user.level.level_points_required[2].points_required)) * 100
+                        "
+                        fill-color="red" 
+                        style="height: 100px; width: 100px;"
+                        />
                     <h3 class="point_name">RP</h3> 
                     <h3 class="point_score">{{ user.rp.points_earned }}</h3>
                 </div>
@@ -81,12 +97,11 @@ import CircleProgress from "vue3-circle-progress";
             },
             async loadLevels() {
                 for(let [index, user] of this.users.entries()){
-                    await axios.get(`http://localhost:5001/user/`+user.id+`/level/current`)
+                    await axios.get(`http://localhost:5001/user/`+user.id+`/level/next`)
                     .then(response => {
                         // JSON responses are automatically parsed.
                         let res = response.data
-                        user = {...user, level: res.level_number}
-                        this.users[index] = user
+                        this.users[index] = {...user, level: res}
                     })
                     .catch(e => {
                         console.log(e)
@@ -105,9 +120,7 @@ import CircleProgress from "vue3-circle-progress";
                         let xp = res[xp_index]
                         let kp = res[kp_index]
                         let rp = res[rp_index]
-                        console.log({...user, xp: xp, kp: kp, rp: rp})
                         this.users[index] = {...user, xp: xp, kp: kp, rp: rp}
-                        console.log(this.users[index])
                     })
                     .catch(e => {
                         console.log(e)

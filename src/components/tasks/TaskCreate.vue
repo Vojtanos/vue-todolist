@@ -44,7 +44,7 @@ export default {
                 this.invalidInput = true;
                 return;
             }
-            
+            axios.put('http://localhost:5001/user/'+this.person+'/action/set-task')
             const task = {
                 name: this.name,
                 person: this.person,

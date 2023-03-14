@@ -122,7 +122,6 @@ export default {
             if (this.name === '' || this.person === '' || this.deadline === '' || this.priority === '') {
                 return;
             }
-            console.log(id)
             let apiURL = `http://localhost:4000/tasks/${id}`;
             const task = {
                 _id: this.id,
@@ -145,6 +144,11 @@ export default {
             }).catch(error => {
                 console.log(error)
             });
+            
+            console.log(this.person)
+            if(this.isDoneNew){
+                axios.put('http://localhost:5001/user/'+this.person+'/action/done-task')
+            }
         },
         loadUsers() {
             this.error = null;

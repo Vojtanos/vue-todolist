@@ -16,8 +16,8 @@
         <tr v-for="(user,i) in users" :key="user._id">
             <td>{{user.user.username}}</td>
             <td>{{user.points_earned}}</td>
+            <td>{{ kp[i] }}</td>
             <td>{{ rp[i] }}</td>
-            <td>{{kp[i]}}</td>
         </tr>
     </tbody>
 </table>
